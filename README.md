@@ -34,7 +34,7 @@ Para executar o projeto localmente siga os passos:
 - Execute a classe principal Application.java como uma aplicação Spring Boot.
 - Abra o navegador e acesse a aplicação em http://localhost:8080.
 
-Foi adicionado uma camada de segurança, onde para reproduzir testes com as massas jwt, é necessário 'assinar' o token adicionando uma secret válida:   
+Foi considerado uma camada de segurança, onde para reproduzir testes com as massas jwt, é necessário 'assinar' o token adicionando uma secret válida:   
 Chave:  4xdMYfO0rjse/X3wbe7PWoDDKtWnYLZaIhMIYYAFBA4=
 
 ![signature.png](signature.png)
