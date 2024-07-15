@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-ecs-fargate
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ template "fullname" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "fullname" . }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.service.port }}
+          env:
+          # Specify any environment variables here
+          resources:
+            limits:
+              cpu: 256m
+              memory: 512Mi
+      serviceAccountName: default # Modify as needed
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.service.name }}
+spec:
+  selector:
+    app: {{ template "fullname" . }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: {{ .Values.service.port }}
+---
+apiVersion: ecs.k8s.aws/v1
+kind: Cluster
+metadata:
+  name: {{ .Values.ecs.clusterName }}
+spec:
+  region: us-east-1
+---
+apiVersion: ecs.k8s.aws/v1
+kind: Service
+metadata:
+  name: {{ .Values.ecs.serviceName }}
+spec:
+  clusterName: {{ .Values.ecs.clusterName }}
+  serviceName: {{ .Values.ecs.serviceName }}
+  launchType: {{ .Values.ecs.launchType }}
+  taskDefinitionName: {{ .Values.ecs.taskDefinitionName }}
+  desiredCount: 1
+  networkConfiguration:
+    awsvpcConfiguration:
+      subnets: {{ .Values.ecs.networkConfiguration.subnets }}
+      securityGroups: {{ .Values.ecs.networkConfiguration.securityGroups }}
+  taskRoleArn: {{ .Values.ecs.taskRoleArn }}
