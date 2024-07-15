@@ -9,8 +9,7 @@ resource "aws_ecs_task_definition" "ecs_task_definition" {
   container_definitions = jsonencode([
     {
       name = "app-container"
-#       image = "nginx:latest"
-       image = "roginhooo/jwt-validator:latest"
+      image = "roginhooo/jwt-validator:latest"
 #       image = aws_ecr_repository.application_repository.repository_url
       cpu = 256
       memory = 512

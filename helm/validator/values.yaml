@@ -2,8 +2,8 @@ app:
   replicas: 1
   containerPort: 8080
   image:
-    repository: "roginhooo/jwt-validator"
-    tag: "latest"
+    repository: roginhooo/jwt-validator
+    tag: latest
     pullPolicy: IfNotPresent
 
   service:
