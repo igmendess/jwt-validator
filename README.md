@@ -34,9 +34,10 @@ Para executar o projeto localmente siga os passos:
 - Execute a classe principal Application.java como uma aplicação Spring Boot.
 - Abra o navegador e acesse a aplicação em http://localhost:8080.
 
-Foi adicionado uma camada de segurança, onde para reproduzir testes com as massas jwt, é necessário 'assinar' o token adicionando uma secret válida:
+Foi adicionado uma camada de segurança, onde para reproduzir testes com as massas jwt, é necessário 'assinar' o token adicionando uma secret válida:   
+Chave:  4xdMYfO0rjse/X3wbe7PWoDDKtWnYLZaIhMIYYAFBA4=
 
-4xdMYfO0rjse/X3wbe7PWoDDKtWnYLZaIhMIYYAFBA4=
+![signature.png](signature.png)
 
 Somente com essa assinatura o token será lido.
 
@@ -64,3 +65,12 @@ Principais comandos para executar o terraform e ter a criação da infraestrutur
 terraform init  
 terraform apply
 
+> ### Esteira/Pipeline CI/CD
+
+Criado um deploy simples que irá realizar os passos abaixo:
+
+- Logar na AWS.
+- Executar os comandos terraform init e apply para criar a infraestrutura em nuvem.
+- Gerar uma imagem docker da aplicação.
+- Subir a imagem gerada para um repositório ECR na AWS.
+- Utilizar a imagem gerada no cluster ECS criado.
