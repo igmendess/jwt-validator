@@ -1,5 +1,6 @@
 package com.example.jwtvalidator.configs;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwt;
 import io.jsonwebtoken.Jwts;
@@ -9,7 +10,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
 import java.util.Base64;
+import java.util.HashMap;
+import java.util.Map;
 
 
 @Component
@@ -24,6 +28,15 @@ public class JwtValidator {
         byte[] secret = Base64.getDecoder().decode(secretKey);
 
         try {
+/*          Trecho que irá ignorar a necessidade da secret do token
+
+            String[] split_string = jwtString.split("\\.");
+            String base64EncodedBody = split_string[1];
+
+            Base64.Decoder base64Url = Base64.getUrlDecoder();
+            Map<String, String> claims = new ObjectMapper().readValue(base64Url.decode(base64EncodedBody), HashMap.class);
+*/
+
             Jwt<?, Claims> jwt =  Jwts.parser().setSigningKey(secret).build().parseSignedClaims(jwtString);
             Claims claims = jwt.getPayload();
 
