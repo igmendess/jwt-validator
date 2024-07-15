@@ -28,11 +28,11 @@ hs_err_pid*
 replay_pid*
 
 # Terraform provider
-.terraform/
+infra/.terraform/
 
 # Terraform state files
-*.tfstate
-.tfstate.
+infra/*.tfstate
+infra/.tfstate.
 
 # Terraform crash log files
 crash.log
