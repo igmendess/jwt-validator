@@ -33,6 +33,7 @@ infra/.terraform/
 # Terraform state files
 infra/*.tfstate
 infra/.tfstate.
+infra/*.backup
 
 # Terraform crash log files
 crash.log

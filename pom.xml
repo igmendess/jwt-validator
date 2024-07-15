@@ -57,11 +57,6 @@
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
-		<dependency>
-			<groupId>com.amazonaws</groupId>
-			<artifactId>aws-java-sdk-cloudwatch</artifactId>
-			<version>RELEASE</version>
-		</dependency>
     </dependencies>
 
 	<build>
