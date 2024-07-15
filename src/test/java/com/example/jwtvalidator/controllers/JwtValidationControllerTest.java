@@ -32,7 +32,7 @@ class JwtValidationControllerTest {
     @DisplayName("Deve retornar falha (false)")
     void validateJwt() {
         var response = this.controller.validateJwt(anyString());
-        assertEquals(response.getStatusCode(), HttpStatus.BAD_REQUEST);
-        assertEquals(response.getBody(), "JWT inválido");
+        assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+        assertEquals("JWT inválido", response.getBody());
     }
 }

@@ -36,12 +36,10 @@ jobs:
           cd infra
           terraform apply -auto-approve
 
-      # Adicionar um passo para verificar se a execução falhou
       - name: Check Apply Status
         id: check_apply_status
         run: echo "::set-output name=exit_code::$(terraform apply -auto-approve -input=false || echo $?)"
 
-      # Executar terraform destroy apenas se a execução falhou
       - name: Terraform Destroy on Failure
         if: ${{ failure() }}
         run: terraform destroy -auto-approve
