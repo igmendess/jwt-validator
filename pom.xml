@@ -11,7 +11,7 @@
 	<groupId>com.example.jwtvalidator</groupId>
 	<artifactId>JWT-validator</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>JWT-reader</name>
+	<name>JWT-validator</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>
