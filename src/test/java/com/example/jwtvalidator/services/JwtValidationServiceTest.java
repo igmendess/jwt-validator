@@ -1,14 +1,12 @@
 package com.example.jwtvalidator.services;
 
-import com.example.jwtvalidator.configs.JwtValidator;
+import com.example.jwtvalidator.components.JwtValidatorComponent;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-
-import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -17,7 +15,7 @@ import static org.mockito.Mockito.when;
 class JwtValidationServiceTest {
 
     @Mock
-    private JwtValidator jwtValidator;
+    private JwtValidatorComponent jwtValidatorComponent;
 
     @InjectMocks
     private JwtValidationService service;
