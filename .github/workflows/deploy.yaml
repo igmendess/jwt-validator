@@ -31,22 +31,11 @@ jobs:
           cd infra
           terraform init
 
-      - name: Get the current Terraform state
-        id: terraform
-        run: | 
-          cd infra
-          terraform state list
-
       - name: Destroy Terraform infrastructure
         if: steps.terraform.outputs.state_list != ''
         run: |
           cd infra 
           terraform destroy -auto-approve
-
-#      - name: Run Terraform apply
-#        run: |
-#          cd infra
-#          terraform apply -auto-approve
 
       - name: Login no Amazon ECR
         run: |
@@ -61,11 +50,6 @@ jobs:
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
-
-      - name: Replace Docker image in Terraform configuration
-        run: |
-          IMAGE_URI="application-repository:latest"
-          sed -i "s|old-image-uri|${IMAGE_URI}|g" /infra/task-definition.tf
 
       - name: Apply Terraform configuration
         run: |
