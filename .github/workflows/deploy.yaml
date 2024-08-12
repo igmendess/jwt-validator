@@ -63,12 +63,8 @@ jobs:
           echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
       - name: Replace Docker image in Terraform configuration
-        env:
-          ECR_REGISTRY: "191384364473.dkr.ecr.us-east-1.amazonaws.com"
-          ECR_REPOSITORY: "application-repository"
-          IMAGE_TAG: latest
         run: |
-          IMAGE_URI="${{ $ECR_REPOSITORY:$IMAGE_TAG }}"
+          IMAGE_URI="application-repository:latest"
           sed -i "s|old-image-uri|${IMAGE_URI}|g" /infra/task-definition.tf
 
       - name: Apply Terraform configuration
