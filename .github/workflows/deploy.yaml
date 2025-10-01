@@ -1,4 +1,4 @@
-name: Terraform Automation
+name: Terraform Apply
 
 on:
 #  pull_request:
@@ -48,11 +48,12 @@ jobs:
         run: |
           cd infra
           terraform plan -out=tfplan.tfout
-
-      - name: Terraform Apply
-        run: |
-          set -e
-          cd infra
-          terraform apply -auto-approve tfplan.out
         if: github.event.inputs.apply-infra == 'true'
+
+#      - name: Terraform Apply
+#        run: |
+#          set -e
+#          cd infra
+#          terraform apply -auto-approve tfplan.out
+#        if: github.event.inputs.apply-infra == 'true'
 
