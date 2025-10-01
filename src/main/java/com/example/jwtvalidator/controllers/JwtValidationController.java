@@ -41,4 +41,14 @@ public class JwtValidationController {
             return ResponseEntity.ok(Boolean.FALSE);
         }
     }
+
+    @GetMapping("/test")
+    @Tag(name = "Principal", description = "Endpoint responsável pelo recebimento do token para análise de regras")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", content = {@Content(schema = @Schema(implementation = Boolean.class), mediaType = "application/json")})
+    })
+    public ResponseEntity<String> returnMessage() {
+        logger.info("Endpoint /test chamado");
+        return ResponseEntity.ok("Endpoint chamado e retornando");
+    }
 }
