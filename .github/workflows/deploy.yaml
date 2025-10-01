@@ -15,14 +15,6 @@ on:
         options:
           - true
           - false
-      destroy-infra:
-        description: 'Fazer o destroy da infraestrutura?'
-        required: true
-        default: false
-        type: choice
-        options:
-          - true
-          - false
 
 jobs:
   deploy:

@@ -1,11 +1,16 @@
 name: Terraform Automation
 
 on:
-  pull_request:
-    branches:
-      - develop
-      - main
-
+  workflow_dispatch:
+    inputs:
+      destroy-infra:
+        description: 'Fazer o destroy da infraestrutura?'
+        required: true
+        default: false
+        type: choice
+        options:
+          - true
+          - false
 jobs:
   deploy:
     runs-on: ubuntu-latest

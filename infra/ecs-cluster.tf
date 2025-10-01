@@ -4,5 +4,5 @@ resource "aws_ecs_cluster" "ecs_cluster" {
 
 resource "aws_cloudwatch_log_group" "cloudwatch_log" {
   name = "/ecs/app-logs"
-  retention_in_days = 2
+  retention_in_days = 3
 }
