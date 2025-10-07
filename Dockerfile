@@ -5,20 +5,13 @@
 #EXPOSE 8080
 #CMD ["java", "-jar", "target/JWT-validator-0.0.1-SNAPSHOT.jar"]
 
-# Etapa 1: Build da aplicação
-FROM maven:3.9.4-eclipse-temurin-17 AS builder
-
-# Define o diretório de trabalho
+FROM maven:3.9.6-eclipse-temurin-21 AS builder
 WORKDIR /app
-
-# Copia o projeto
 COPY . .
-
-# Empacota a aplicação (sem rodar os testes para acelerar o build)
 RUN mvn clean package -DskipTests
 
-# Etapa 2: Imagem final para execução
-FROM eclipse-temurin:17-jre
+# Etapa 2: Imagem final com JDK 21 para execução
+FROM eclipse-temurin:21-jre
 
 # Define o diretório de trabalho
 WORKDIR /app
