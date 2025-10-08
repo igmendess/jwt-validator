@@ -1,6 +1,6 @@
 FROM openjdk:21 AS build
 WORKDIR /app
-COPY app/target/*.jar app.jar
+COPY target/*.jar app.jar
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "app.jar"]
 
