@@ -39,14 +39,14 @@ jobs:
           cd infra
           terraform validate
 
-      - name: Terraform Plan
-        run: |
-          cd infra
-          terraform plan -destroy -out=tfplan.tfout
+#      - name: Terraform Plan
+#        run: |
+#          cd infra
+#          terraform plan -destroy -out=tfplan.tfout
 
       - name: Terraform destroy
         run: |
           set -e
           cd infra
-          terraform apply -destroy -auto-approve tfplan.tfout
-        if: github.event.inputs.destroy-infra == 'true'
+          terraform destroy -auto-approve
+#        if: github.event.inputs.destroy-infra == 'true'
