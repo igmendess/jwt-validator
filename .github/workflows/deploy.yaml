@@ -48,7 +48,6 @@ jobs:
         run: |
           cd infra
           terraform plan -out=tfplan.tfout
-        if: github.event.inputs.apply-infra == 'true'
 
       - name: Terraform Apply
         run: |
