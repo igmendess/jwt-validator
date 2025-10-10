@@ -48,5 +48,5 @@ jobs:
         run: |
           set -e
           cd infra
-          terraform destroy tfplan.tfout -auto-approve
+          terraform apply -auto-approve tfplan.tfout
 #        if: github.event.inputs.destroy-infra == 'true'
