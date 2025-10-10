@@ -1,6 +1,7 @@
 package com.example.jwtvalidator.controllers;
 
 import com.example.jwtvalidator.services.JwtValidationService;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -14,6 +15,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+
+import static com.fasterxml.jackson.databind.type.LogicalType.DateTime;
 
 @RestController
 public class JwtValidationController {
@@ -47,8 +54,8 @@ public class JwtValidationController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", content = {@Content(schema = @Schema(implementation = Boolean.class), mediaType = "application/json")})
     })
-    public ResponseEntity<String> returnMessage() {
+    public ResponseEntity<LocalDateTime> returnMessage() {
         logger.info("Endpoint /test chamado");
-        return ResponseEntity.ok("Endpoint chamado e retornando");
+        return ResponseEntity.ok(LocalDateTime.now());
     }
 }

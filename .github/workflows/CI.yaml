@@ -28,7 +28,7 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: '17'
+          java-version: '21'
 
       - name: Get Version pom.xml
         id: get-version
@@ -55,5 +55,5 @@ jobs:
           context: .
           push: true
           tags: |
-            ${{ secrets.DOCKER_USERNAME }}/springboot-app:latest
-            ${{ secrets.DOCKER_USERNAME }}/springboot-app:${{env.VERSION}}
+            ${{ secrets.DOCKER_USERNAME }}/jwt-validator:latest
+            ${{ secrets.DOCKER_USERNAME }}/jwt-validator:${{env.VERSION}}
