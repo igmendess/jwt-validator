@@ -52,6 +52,7 @@ jobs:
         with:
           context: .
           push: false
+          load: true
           tags: |
             validator-api:${{ steps.get-version.outputs.version }}
             validator-api:latest
