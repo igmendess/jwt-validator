@@ -7,7 +7,7 @@ on:
 
   workflow_dispatch:
     inputs:
-      plan-infra:
+      apply-infra:
         description: 'EXECUTAR TERRAFORM?'
         required: true
         default: false
@@ -99,6 +99,7 @@ jobs:
 
       - name: Obter URL do repositório ECR
         id: get-ecr
+        if: steps.terraform_apply.conclusion == 'success'
         run: |
           cd infra
           ECR_URL=$(terraform output -raw ecr_repository_url)
@@ -125,7 +126,6 @@ jobs:
       - name: Retag e push para ECR
         run: |
           docker tag validator-api:${{ needs.build.outputs.version }} ${{ needs.deploy.outputs.ecr_url }}:latest
-          docker tag validator-api:${{ needs.build.outputs.version }} ${{ needs.deploy.outputs.ecr_url }}:${{ needs.build.outputs.version }}
-
+#          docker tag validator-api:${{ needs.build.outputs.version }} ${{ needs.deploy.outputs.ecr_url }}:${{ needs.build.outputs.version }}
           docker push ${{ needs.deploy.outputs.ecr_url }}:latest
-          docker push ${{ needs.deploy.outputs.ecr_url }}:${{ needs.build.outputs.version }}
+#          docker push ${{ needs.deploy.outputs.ecr_url }}:${{ needs.build.outputs.version }}
