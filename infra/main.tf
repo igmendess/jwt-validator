@@ -11,6 +11,6 @@ provider "aws" {
   region="us-east-1"
 }
 
-resource "aws_s3_bucket" "bucket" {
-  bucket = "igmendess-bucket-terraform-statefile-validator-api"
+resource "aws_s3_bucket" "igmendess-bucket-terraform-statefile-validator-api" {
+  # bucket = "igmendess-bucket-terraform-statefile-validator-api"
 }
