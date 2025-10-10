@@ -1,9 +1,6 @@
-name: CI/CD
+name: CI-CD
 
 on:
-#  pull_request:
-  #    branches:
-  #      - develop
   workflow_dispatch:
     inputs:
       apply-infra:
