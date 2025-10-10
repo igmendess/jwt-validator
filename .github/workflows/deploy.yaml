@@ -38,7 +38,7 @@ jobs:
         run: |
           cd infra
           terraform init \
-            -backend-config="bucket=bucket-terraform-statefile"
+            -backend-config="bucket=bucket-terraform-statefile-validator-api"
 
       - name: Terraform Validate
         run: |
