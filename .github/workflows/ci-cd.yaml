@@ -6,15 +6,15 @@ on:
       apply-infra:
         description: 'EXECUTAR TERRAFORM?'
         required: true
-        default: false
+        default: 'false'
         type: choice
         options:
           - 'true'
           - 'false'
       sync-image:
-        description: 'EXECUTAR TERRAFORM?'
+        description: 'FAZER PUSH DA IMAGEM PARA ECR?'
         required: true
-        default: false
+        default: 'false'
         type: choice
         options:
           - 'true'
