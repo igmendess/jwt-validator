@@ -32,21 +32,22 @@ jobs:
       - name: Terraform Init
         run: |
           cd infra
-          terraform init
+          terraform init \
+            -backend-config="bucket=bucket-terraform-statefile-validator-api"
 
       - name: Terraform Validate
         run: |
           cd infra
           terraform validate
 
-      - name: Terraform Plan
-        run: |
-          cd infra
-          terraform plan -out=tfplan.tfout
+#      - name: Terraform Plan
+#        run: |
+#          cd infra
+#          terraform plan -destroy -out=tfplan.tfout
 
       - name: Terraform destroy
         run: |
           set -e
           cd infra
-          terraform destroy -auto-approve tfplan.tfout
+          terraform destroy -auto-approve
 #        if: github.event.inputs.destroy-infra == 'true'
