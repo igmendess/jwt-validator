@@ -1,4 +1,4 @@
-name: "Teste destroy terraform"
+name: Teste destroy terraform
 
 on:
   push:
@@ -11,5 +11,5 @@ permissions:
 jobs:
   terraform:
     uses: ./.github/workflows/terraform.yaml
-    whit:
-      aws-statefile-s3-bucket: "igmendess-bucket-terraform-statefile-validator-api"
+    with:
+      aws-statefile-s3-bucket: "bucket-terraform-statefile-validator-api"
