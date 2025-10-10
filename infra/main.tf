@@ -14,8 +14,4 @@ provider "aws" {
 resource "aws_s3_bucket" "igmendess-bucket-terraform-statefile-validator-api" {
   bucket = "bucket-terraform-statefile-validator-api"
   force_destroy = true  # opcional: permite destruir o bucket mesmo com objetos dentro
-
-  tags = {
-    Name        = validator-api
-  }
 }
