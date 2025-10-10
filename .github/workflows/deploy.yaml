@@ -50,10 +50,10 @@ jobs:
           terraform plan -out=tfplan.tfout
         if: github.event.inputs.apply-infra == 'true'
 
-#      - name: Terraform Apply
-#        run: |
-#          set -e
-#          cd infra
-#          terraform apply -auto-approve tfplan.out
-#        if: github.event.inputs.apply-infra == 'true'
+      - name: Terraform Apply
+        run: |
+          set -e
+          cd infra
+          terraform apply -auto-approve tfplan.out
+        if: github.event.inputs.apply-infra == 'true'
 
