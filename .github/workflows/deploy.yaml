@@ -54,6 +54,6 @@ jobs:
         run: |
           set -e
           cd infra
-          terraform apply -auto-approve tfplan.out
+          terraform apply -auto-approve tfplan.tfout
         if: github.event.inputs.apply-infra == 'true'
 
