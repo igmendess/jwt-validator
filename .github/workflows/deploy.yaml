@@ -37,7 +37,8 @@ jobs:
       - name: Terraform Init
         run: |
           cd infra
-          terraform init
+          terraform init \
+            -backend-config="bucket=bucket-terraform-statefile-validator-api"
 
       - name: Terraform Validate
         run: |
@@ -50,9 +51,30 @@ jobs:
           terraform plan -out=tfplan.tfout
 
       - name: Terraform Apply
+        id: terraform-apply
         run: |
           set -e
           cd infra
           terraform apply -auto-approve tfplan.tfout
         if: github.event.inputs.apply-infra == 'true'
 
+      - name: Obter URL do repositório ECR
+        if: terraform-apply == 'true'
+        id: get-ecr
+        run: |
+          cd infra
+          ECR_URL=$(terraform output -raw ecr_repository_url)
+          echo "ECR_REPO=$ECR_URL" >> $GITHUB_ENV
+          echo "ECR_REPO=$ECR_URL" >> $GITHUB_OUTPUT
+
+      - name: Login no Amazon ECR
+        if: steps.terraform-apply == 'true'
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Tag e push da imagem para o ECR
+        if: terraform-apply == 'true'
+        run: |
+          docker tag validator-api:${{ needs.build.outputs.version }} $ECR_REPO:latest
+          docker tag validator-api:${{ needs.build.outputs.version }} $ECR_REPO:${{ needs.build.outputs.version }}
+          docker push $ECR_REPO:latest
+          docker push $ECR_REPO:${{ needs.build.outputs.version }}

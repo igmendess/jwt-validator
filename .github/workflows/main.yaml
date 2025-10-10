@@ -1,0 +1,15 @@
+name: "Teste destroy terraform"
+
+on:
+  push:
+    branches:
+      - main
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  terraform:
+    uses: ./.github/workflows/terraform.yaml
+    whit:
+      aws-statefile-s3-bucket: "igmendess-bucket-terraform-statefile-validator-api"
