@@ -11,14 +11,6 @@ on:
         options:
           - true
           - false
-      sync-image:
-        description: 'SUBIR IMAGEM PARA ECS?'
-        required: true
-        default: false
-        type: choice
-        options:
-          - true
-          - false
 
 jobs:
   build:
