@@ -1,4 +1,4 @@
-name: CI-CD
+name: CI/CD
 
 on:
   workflow_dispatch:
@@ -9,8 +9,16 @@ on:
         default: false
         type: choice
         options:
-          - true
-          - false
+          - 'true'
+          - 'false'
+      sync-image:
+        description: 'EXECUTAR TERRAFORM?'
+        required: true
+        default: false
+        type: choice
+        options:
+          - 'true'
+          - 'false'
 
 jobs:
   build:
