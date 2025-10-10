@@ -122,6 +122,4 @@ jobs:
       - name: Retag e push para ECR
         run: |
           docker tag validator-api:${{ needs.build.outputs.version }} ${{ needs.deploy.outputs.ecr_url }}:latest
-#          docker tag validator-api:${{ needs.build.outputs.version }} ${{ needs.deploy.outputs.ecr_url }}:${{ needs.build.outputs.version }}
           docker push ${{ needs.deploy.outputs.ecr_url }}:latest
-#          docker push ${{ needs.deploy.outputs.ecr_url }}:${{ needs.build.outputs.version }}
